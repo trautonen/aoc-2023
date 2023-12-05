@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "all-days": "concurrently -s all -m 1 'npm:day*'",
+    "day01-part1": "npm run exec -- 01 part1 55816",
+    "day01-part2": "npm run exec -- 01 part2 54980",
+    "day02-part1": "npm run exec -- 02 part1 2377",
+    "day02-part2": "npm run exec -- 02 part2 71220",
+    "day03-part1": "npm run exec -- 03 part1 537832",
+    "day03-part2": "npm run exec -- 03 part2 81939900",
+    "day04-part1": "npm run exec -- 04 part1 22488",
+    "day04-part2": "npm run exec -- 04 part2 7013204",
+    "day05-part1": "npm run exec -- 05 part1 278755257",
+    "day05-part2": "npm run exec -- 05 part2 26829166",
+    "format": "prettier --write .",
+    "exec": "node --loader ts-node/esm/transpile-only --experimental-specifier-resolution node --no-warnings ./src/run.ts"
+  },
+  "devDependencies": {
+    "@types/node": "18.19.0",
+    "concurrently": "8.2.2",
+    "prettier": "3.1.0",
+    "prettier-plugin-organize-imports": "3.2.4",
+    "ts-node": "10.9.1",
+    "typescript": "5.3.2"
+  }
+}
