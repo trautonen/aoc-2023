@@ -156,7 +156,11 @@ export const createRangeParser = (
     if (source && destination && length) {
       const rangeMapping = createRangeMapping(parseInt(source, 10), parseInt(destination, 10), parseInt(length, 10))
       const rangeMappings = [...categoryMapping.rangeMappings, rangeMapping]
-      const newCategoryMapping = createCategoryMapping(categoryMapping.source, categoryMapping.destination, rangeMappings)
+      const newCategoryMapping = createCategoryMapping(
+        categoryMapping.source,
+        categoryMapping.destination,
+        rangeMappings
+      )
       return createRangeParser(seeds, categoryMappings, newCategoryMapping)
     }
     return createCategoryParser(seeds, [...categoryMappings, categoryMapping])
