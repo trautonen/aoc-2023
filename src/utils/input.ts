@@ -21,13 +21,16 @@ export const parseLines = (data: string): string[] => {
  * @returns [number]
  */
 export const parseIntegers = (data: string, separator: string | RegExp): number[] => {
-  return data.split(separator).map(d => {
-    const value = parseInt(d, 10)
-    if (Number.isNaN(value)) {
-      throw new Error(`${d} is not a number`)
-    }
-    return value
-  })
+  return data
+    .trim()
+    .split(separator)
+    .map(d => {
+      const value = parseInt(d, 10)
+      if (Number.isNaN(value)) {
+        throw new Error(`${d} is not a number`)
+      }
+      return value
+    })
 }
 
 export const matchGroups = (data: string, regex: RegExp): Record<string, string> => {
