@@ -37,16 +37,12 @@ export const findNumberOfWinningHoldTimes = (race: Race): number => {
 
 export const parseRaces = (data: string): Race[] => {
   const [timesData, distancesData] = parseLines(data)
-  const times = parseIntegers(timesData!.split(':')[1]!, /\s+/)
-  const distances = parseIntegers(distancesData!.split(':')[1]!, /\s+/)
+  const times = parseIntegers(timesData!.split(':')[1]!)
+  const distances = parseIntegers(distancesData!.split(':')[1]!)
   if (times.length !== distances.length) {
     throw new Error('Race data is asymmetric')
   }
-  const races: Race[] = []
-  for (let i = 0; i < times.length; i++) {
-    races.push({ time: times[i]!, record: distances[i]! })
-  }
-  return races
+  return times.map((time, index) => ({ time, record: distances[index]! }))
 }
 
 export const solve = (): number => {

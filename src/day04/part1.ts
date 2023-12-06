@@ -9,7 +9,6 @@ export type Card = {
 }
 
 export const cardMatcher = /Card\s+\d+:\s+(?<numbersText>[0-9 ]+)\s+\|\s+(?<winningText>[0-9 ]+)/
-export const whiteSpaceMatcher = /\s+/
 
 export const countPoints = (card: Card): number => {
   const { matches } = card
@@ -18,8 +17,8 @@ export const countPoints = (card: Card): number => {
 
 export const parseCard = (data: string): Card => {
   const { numbersText, winningText } = matchGroups(data, cardMatcher)
-  const numbers = parseIntegers(numbersText!, whiteSpaceMatcher)
-  const winning = parseIntegers(winningText!, whiteSpaceMatcher)
+  const numbers = parseIntegers(numbersText!)
+  const winning = parseIntegers(winningText!)
   const matches = numbers.filter(n => winning.includes(n))
 
   return {

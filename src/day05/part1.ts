@@ -195,7 +195,7 @@ export const createSeedsParser = (): Parser<'seeds', 'category'> => {
   const append = (line: string) => {
     const { seeds } = matchGroups(line, seedsMatcher)
     if (seeds) {
-      return createCategoryParser(parseIntegers(seeds, /\s+/), [])
+      return createCategoryParser(parseIntegers(seeds), [])
     }
     return createSeedsParser()
   }

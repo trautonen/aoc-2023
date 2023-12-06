@@ -20,17 +20,20 @@ export const parseLines = (data: string): string[] => {
 /**
  * @returns [number]
  */
-export const parseIntegers = (data: string, separator: string | RegExp): number[] => {
-  return data
-    .trim()
-    .split(separator)
-    .map(d => {
+export const parseIntegers = (data: string, separator?: RegExp): number[] => {
+  const splitter = separator ?? /\s+/
+  const matcher = new RegExp(`^(?:${splitter.source})?(.*?)(?:${splitter.source})?$`)
+  const match = data.match(matcher)
+  if (match && match[1]) {
+    return match[1].split(splitter).map(d => {
       const value = parseInt(d, 10)
       if (Number.isNaN(value)) {
         throw new Error(`${d} is not a number`)
       }
       return value
     })
+  }
+  throw new Error('Invalid input')
 }
 
 export const matchGroups = (data: string, regex: RegExp): Record<string, string> => {
