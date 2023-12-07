@@ -19,5 +19,9 @@ export const findNumberOfWinningCards = (card: Card, index: number, cards: Card[
 }
 
 export const solve = (): number => {
-  return parseLines(loadInput(__dirname)).map(parseCard).map(findNumberOfWinningCards).map(plus(1)).reduce(sum)
+  return parseLines(loadInput(import.meta.url))
+    .map(parseCard)
+    .map(findNumberOfWinningCards)
+    .map(plus(1))
+    .reduce(sum)
 }

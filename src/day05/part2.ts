@@ -17,7 +17,7 @@ const parseSeedRanges = (seeds: number[]): SeedRange[] => {
 }
 
 export const solve = (): number => {
-  const almanac = parseAlmanac(loadInput(__dirname))
+  const almanac = parseAlmanac(loadInput(import.meta.url))
   return parseSeedRanges(almanac.seeds)
     .flatMap(range => almanac.getRangeDestinations(range))
     .map(destinations => destinations.start)

@@ -1,7 +1,19 @@
 import { exit } from 'process'
+import * as semver from 'semver'
+import config from '../package.json' assert { type: 'json' }
 import { isTest } from './utils/input'
 
+const checkNodeVersion = () => {
+  const version = process.version.substring(1)
+  if (!semver.satisfies(version, config.engines.node)) {
+    console.log(`Node version ${version} does not satisfy ${config.engines.node}`)
+    exit(1)
+  }
+}
+
 const run = async () => {
+  checkNodeVersion()
+
   const day = parseInt(process.argv[2]!, 10)
   const part = process.argv[3]
   if (Number.isNaN(day)) {
@@ -10,7 +22,7 @@ const run = async () => {
   const expected = process.argv[4]
 
   const module = `day${day.toString().padStart(2, '0')}/${part}`
-  const { default: exports } = await import(`./${module}`)
+  const exports = await import(`./${module}`)
 
   console.log()
   console.time(module)

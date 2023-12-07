@@ -5,7 +5,8 @@ export const isTest = (): boolean => {
   return process.env['TEST']?.toLowerCase() === 'true'
 }
 
-export const loadInput = (dir: string): string => {
+export const loadInput = (url: string): string => {
+  const dir = new URL('.', url).pathname
   const file = isTest() ? 'example.txt' : 'input.txt'
   return fs.readFileSync(path.join(dir, file), { encoding: 'utf-8' }).trim()
 }

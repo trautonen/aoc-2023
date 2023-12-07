@@ -19,5 +19,7 @@ export const parseCalibrationValue = (data: string): number => {
 }
 
 export const solve = (): number => {
-  return parseLines(loadInput(__dirname)).map(parseCalibrationValue).reduce(sum)
+  return parseLines(loadInput(import.meta.url))
+    .map(parseCalibrationValue)
+    .reduce(sum)
 }

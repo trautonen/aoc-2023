@@ -29,5 +29,8 @@ export const parseCard = (data: string): Card => {
 }
 
 export const solve = (): number => {
-  return parseLines(loadInput(__dirname)).map(parseCard).map(countPoints).reduce(sum)
+  return parseLines(loadInput(import.meta.url))
+    .map(parseCard)
+    .map(countPoints)
+    .reduce(sum)
 }

@@ -213,7 +213,7 @@ export const parseAlmanac = (data: string): Almanac => {
 }
 
 export const solve = (): number => {
-  const almanac = parseAlmanac(loadInput(__dirname))
+  const almanac = parseAlmanac(loadInput(import.meta.url))
   return almanac.seeds
     .map(seed => ({ start: seed, length: 1 }))
     .flatMap(range => almanac.getRangeDestinations(range))

@@ -19,5 +19,9 @@ export const countProduct = (pick: Pick): number => {
 }
 
 export const solve = (): number => {
-  return parseLines(loadInput(__dirname)).map(parseGame).map(findMinimumContent).map(countProduct).reduce(sum)
+  return parseLines(loadInput(import.meta.url))
+    .map(parseGame)
+    .map(findMinimumContent)
+    .map(countProduct)
+    .reduce(sum)
 }

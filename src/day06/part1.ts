@@ -46,5 +46,7 @@ export const parseRaces = (data: string): Race[] => {
 }
 
 export const solve = (): number => {
-  return parseRaces(loadInput(__dirname)).map(findNumberOfWinningHoldTimes).reduce(multiply)
+  return parseRaces(loadInput(import.meta.url))
+    .map(findNumberOfWinningHoldTimes)
+    .reduce(multiply)
 }

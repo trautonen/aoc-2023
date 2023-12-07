@@ -47,7 +47,7 @@ export const isPossibleGame = (game: Game, allowed: Pick): boolean => {
 }
 
 export const solve = (): number => {
-  return parseLines(loadInput(__dirname))
+  return parseLines(loadInput(import.meta.url))
     .map(parseGame)
     .filter(g => isPossibleGame(g, content))
     .map(g => g.id)

@@ -76,7 +76,7 @@ export const isAdjacentToSymbol = (part: PartNumber, schematic: Schematic): bool
 }
 
 export const solve = (): number => {
-  const schematic = parseSchematic(loadInput(__dirname))
+  const schematic = parseSchematic(loadInput(import.meta.url))
   return schematic.parts
     .filter(part => isAdjacentToSymbol(part, schematic))
     .map(part => part.value)

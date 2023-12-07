@@ -36,7 +36,7 @@ export const parseGears = (schematic: Schematic): Gear[] => {
 }
 
 export const solve = (): number => {
-  return parseGears(parseSchematic(loadInput(__dirname)))
+  return parseGears(parseSchematic(loadInput(import.meta.url)))
     .filter(gear => gear.adjacents.length === 2)
     .map(gear => gear.adjacents.map(pn => pn.value).reduce(multiply))
     .reduce(sum)
