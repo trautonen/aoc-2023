@@ -60,7 +60,7 @@ export const compareHands =
   }
 
 export const compareRounds =
-  <C extends Labels>(labels: C, comparator: Comparator<Hand<C>>) =>
+  <C extends Labels>(comparator: Comparator<Hand<C>>) =>
   (left: Round<C>, right: Round<C>): number => {
     return comparator(left.hand, right.hand)
   }
@@ -86,7 +86,7 @@ export const solve = (): number => {
   const labels = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'] as const
   return parseLines(loadInput(import.meta.url))
     .map(parseRound(labels))
-    .toSorted(compareRounds(labels, compareHands(labels, toSortedCountsByLabel(labels))))
+    .toSorted(compareRounds(compareHands(labels, toSortedCountsByLabel(labels))))
     .map((hand, rank) => hand.bid * (rank + 1))
     .reduce(sum)
 }

@@ -17,7 +17,7 @@ export const solve = (): number => {
   const labels = ['A', 'K', 'Q', 'T', '9', '8', '7', '6', '5', '4', '3', '2', 'J'] as const
   return parseLines(loadInput(import.meta.url))
     .map(parseRound(labels))
-    .toSorted(compareRounds(labels, compareHands(labels, toSortedCountsByLabelWithJoker(labels))))
+    .toSorted(compareRounds(compareHands(labels, toSortedCountsByLabelWithJoker(labels))))
     .map((hand, rank) => hand.bid * (rank + 1))
     .reduce(sum)
 }
