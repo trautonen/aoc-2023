@@ -61,6 +61,10 @@ export const log = <T>(data: T): T => {
   return data
 }
 
+export const notEmpty = (data: string): boolean => {
+  return data.trim().length > 0
+}
+
 export const sum = (a: number, b: number): number => {
   return a + b
 }
@@ -95,6 +99,42 @@ export const first = <T>(items: T[]): T => {
 
 export const last = <T>(items: T[]): T => {
   return items[items.length - 1]!
+}
+
+export const asc = <T extends number | string>(a: T, b: T): number => {
+  if (a < b) {
+    return -1
+  }
+  if (a > b) {
+    return 1
+  }
+  return 0
+}
+
+export const toAsc =
+  <I, T extends number | string>(fn: (input: I) => T) =>
+  (a: I, b: I): number => {
+    return asc(fn(a), fn(b))
+  }
+
+export const desc = <T extends number | string>(a: T, b: T): number => {
+  return asc(a, b) * -1
+}
+
+export const toDesc =
+  <I, T extends number | string>(fn: (input: I) => T) =>
+  (a: I, b: I): number => {
+    return desc(fn(a), fn(b))
+  }
+
+export const gcd = (...values: number[]): number => {
+  const _gcd = (x: number, y: number): number => (y === 0 ? x : _gcd(y, x % y))
+  return [...values].reduce((a, b) => _gcd(a, b))
+}
+
+export const lcm = (...values: number[]): number => {
+  const _lcm = (x: number, y: number): number => (x * y) / gcd(x, y)
+  return [...values].reduce((a, b) => _lcm(a, b))
 }
 
 export const objectFromEntries = <const T extends ReadonlyArray<readonly [PropertyKey, unknown]>>(
