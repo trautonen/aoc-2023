@@ -1,6 +1,7 @@
-import { exit } from 'process'
+import { exit } from 'node:process'
 import * as semver from 'semver'
 import config from '../package.json' assert { type: 'json' }
+import { download } from './download'
 import { isTest } from './utils/input'
 
 const checkNodeVersion = () => {
@@ -23,6 +24,8 @@ const run = async () => {
 
   const module = `day${day.toString().padStart(2, '0')}/${part}`
   const exports = await import(`./${module}`)
+
+  await download(day)
 
   console.log()
   console.time(module)
