@@ -18,6 +18,8 @@
     "day07-part2": "npm run exec -- 07 part2 254115617",
     "day08-part1": "npm run exec -- 08 part1 14681",
     "day08-part2": "npm run exec -- 08 part2 14321394058031",
+    "day09-part1": "npm run exec -- 09 part1 1666172641",
+    "day09-part2": "npm run exec -- 09 part2 933",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "exec": "node --loader ts-node/esm/transpile-only --experimental-specifier-resolution=node --no-warnings ./src/run.ts"

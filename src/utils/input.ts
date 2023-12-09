@@ -101,6 +101,10 @@ export const last = <T>(items: T[]): T => {
   return items[items.length - 1]!
 }
 
+export const reverse = <T>(items: T[]): T[] => {
+  return items.toReversed()
+}
+
 export const asc = <T extends number | string>(a: T, b: T): number => {
   if (a < b) {
     return -1

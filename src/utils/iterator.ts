@@ -63,6 +63,21 @@ export class ExperimentalIterator<T> implements IterableIterator<T> {
     return new ExperimentalIterator(gen())
   }
 
+  zip<R>(other: Iterator<R>): ExperimentalIterator<[T, R]> {
+    const iter = this.iterator
+    const gen = function* () {
+      let a = iter.next()
+      let b = other.next()
+      while (!a.done && !b.done) {
+        const yielded: [T, R] = [a.value, b.value]
+        yield yielded
+        a = iter.next()
+        b = other.next()
+      }
+    }
+    return new ExperimentalIterator(gen())
+  }
+
   take(n: number): ExperimentalIterator<T> {
     const iter = this.iterator
     const gen = function* () {
@@ -95,7 +110,7 @@ export class ExperimentalIterator<T> implements IterableIterator<T> {
   drop(n: number): ExperimentalIterator<T> {
     const iter = this.iterator
     const gen = function* () {
-      let c = 0
+      let c = 1
       let result = iter.next()
       while (!result.done) {
         if (c > n) {
